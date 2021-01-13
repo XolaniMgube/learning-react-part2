@@ -1,41 +1,38 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlogsList from "./BlogsList";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState([
-    {
-      title: "Mr Good Books",
-      author: "Xolani",
-      article:
-        " lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem",
-      id: 1,
-    },
-    {
-      title: "Saw it all",
-      author: "Njabulo",
-      article:
-        " lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem",
-      id: 2,
-    },
-    {
-      title: "Who run the world",
-      author: "Momo",
-      article:
-        " lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem",
-      id: 3,
-    },
-  ]);
+  const [blogs, setBlogs] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null)
 
-  let deleteBlog = (id) => {
-    let newBlogs = blogs.filter(blog => blog.id !== id);
-    setBlogs(newBlogs)
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      fetch("http://localhost:8000/blogs")
+        .then((res) => {
+          if (!res.ok) {
+            throw Error('could not fetch the data from that end point')
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setBlogs(data);
+          setIsPending(false);
+          setError(null)
+        }).catch(err => {
+          setError(err.message)
+          setIsPending(false)
+        })
+    }, 2000);
+  }, []);
 
   return (
     <div className="home">
-      <BlogsList blogs={blogs} title={"All Blogs!"} deleteBlog={deleteBlog} />
+      {isPending && <div>Loading...</div>}
+      {error && <div>{error}</div>}
+      {blogs && <BlogsList blogs={blogs} title={"All Blogs!"} />}
     </div>
   );
 };

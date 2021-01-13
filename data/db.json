@@ -1,0 +1,25 @@
+{
+  "blogs": [
+    {
+      "title": "Mr Good Books",
+      "author": "Xolani",
+      "body":
+          " lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem",
+      "id": 1
+      },
+      {
+      "title": "Saw it all",
+      "author": "Njabulo",
+      "body":
+          " lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem",
+      "id": 2
+      },
+      {
+      "title": "Who run the world",
+      "author": "Momo",
+      "body":
+          " lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem lorem ipsum is the iss lorem",
+      "id": 3
+    }
+  ]
+}

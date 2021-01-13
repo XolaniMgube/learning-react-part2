@@ -1,6 +1,6 @@
 /** @format */
 
-const BlogsList = ({blogs, title, deleteBlog}) => {
+const BlogsList = ({blogs, title}) => {
   
   return (
     <div className="blogslist">
@@ -12,8 +12,7 @@ const BlogsList = ({blogs, title, deleteBlog}) => {
             written by: <i>{blog.author}</i>
           </p>
           <hr />
-          <p>{blog.article}</p>
-          <button onClick={() => deleteBlog(blog.id)}>Delete Blog</button>
+          <p>{blog.body}</p>
           <br />
           <br />
         </div>
